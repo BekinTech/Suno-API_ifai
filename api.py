@@ -59,7 +59,10 @@ app = fastapi.FastAPI(
 )
 
 # Redirect to Docs :)
-
+if __name__ == "__main__":
+    import uvicorn
+    port = int(os.environ.get("PORT", 8080))
+    uvicorn.run(app, host="0.0.0.0", port=port)
 
 @app.get("/", include_in_schema=False)
 async def redirect_to_docs():
